@@ -143,7 +143,7 @@ func handyScore(over int) string {
 	case score == 72:
 		return "이븐"
 	case score < 72:
-		return "와.. 언더.."
+		return "절대 고수"
 	case score < 82:
 		return "싱글"
 	case score > 81 && score < 90:
@@ -157,4 +157,108 @@ func handyScore(over int) string {
 }
 ```
 
+# Pointer
+```go
+a := 2
+b := a
+fmt.Println(a, b)
+// 결과 => 2 2
 
+a := 2
+b := a
+a = 10
+fmt.Println(a, b)
+// 결과 => 10 2
+
+a := 2
+b := a
+a = 10
+fmt.Println(&a, &b)
+// 결과 => 0xc0000b2008 0xc0000b2010
+// 변수 앞에 &를 붙이면 메모리 주소값을 출력해 준다.
+
+a := 2
+b := &a
+fmt.Println(a, b)
+// 결과 => 2 0xc0000b2008
+
+a := 2
+b := &a
+a = 10
+fmt.Println(a, b)
+// 결과 => 10 0xc000014098
+
+a := 2
+b := &a
+a = 10
+fmt.Println(a, b)
+// 결과 => 10 0xc000014098
+
+a := 2
+b := &a
+fmt.Println(a, *b)
+// 결과 => 2 2
+// 변수 앞에 *을 붙여주면 주소가 참조하고 있는 값을 찾는다
+
+a := 2
+b := &a
+a = 11
+fmt.Println(a, *b)
+// 결과 => 11 11
+
+a := 2
+b := &a
+*b = 222
+fmt.Println(a, *b)
+// 결과 => 222 222
+```
+
+# Array
+
+```go
+// 배열 선언
+arr := [5]string{"user01","user02","user03", "user04", "user05"}
+// 크기가 없는 배열선언
+arr := []string{"user01", "user02", "user03"}
+
+// Error
+arr := []string{"user01", "user02", "user03"}
+arr[3] = "user04"
+fmt.Println(arr)
+// 최초 선언된 배열의 크기가 3인데 4번째에 아이템을 넣으려고 하면 Error
+// panic: runtime error: index out of range [3] with length 3
+
+// append
+// 기존에 알던 문법으로는.. push 등을 이용하는데.. 
+// Go에서는 append를 이용하는데.. 컨셉이.. 배열과, 추가할 인자를 주면 새로운 배열이 리턴되고
+// 리턴값을 다시 선언된 어레이에 넣어줘야 한다.
+arr := []string{"user01", "user02", "user03"}
+arr = append(arr,"user04")
+```
+
+# Struct
+
+```go
+// 일반적으로 알고 있는 Object와 비슷하다.
+// struct 선언
+type userObj struct {
+	name  string
+	age   int
+	hobby []string
+}
+hobby01 := []string{"golf", "baseball"}
+// struct에 선언한 순서 그대로 데이터를 입력하여 만들수 있다.
+userInfo := userObj{"Lee", 42, hobby01}
+
+// 좀더 명확하게 키와 함께 써도 된다. 
+userInfo := userObj{"name": "Lee", "age": 42, "hobby": hobby01}
+```
+
+# Map
+
+```go
+// 기본 선언
+user := map[string]string{"name":"이승재","id":"test","age":"33"}
+          key 데이터타입 value 데이터타입
+// 키, 밸류 모두 스트링 타입으로 만들었기 때문에 age를 숫자로 넣을 수가 없다.           
+```

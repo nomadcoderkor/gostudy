@@ -1,8 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 // func intAndString(name string) (nameLen int, upperName string) {
 // 	defer fmt.Println("펑션종료")
@@ -58,11 +56,27 @@ func handyScore(over int) string {
 	return "제발 연습좀 .."
 }
 
+type userObj struct {
+	name  string
+	age   int
+	hobby []string
+}
+
 func main() {
 	// len, upper := intAndString("고랭 좋은거 같은데")
 	// fmt.Println(len, upper)
 	// result := loopSum(2, 44, 5, 43, 8, 18)
 	// fmt.Println(result)
 	// fmt.Println(isLogin("test"))
-	fmt.Println(handyScore(0))
+	// fmt.Println(handyScore(0))
+	// a := 2
+	// b := &a
+	// *b = 222
+	// fmt.Println(a, *b)
+	// user := map[string]string{"name": "이승재", "id": "test", "age": "33"}
+	// fmt.Println(user)
+	hobby01 := []string{"golf", "baseball"}
+	userInfo := userObj{"Lee", 42, hobby01}
+	fmt.Println(userInfo)
+
 }
